@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HiuiServiceService } from './Services/hiui-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'UIHI';
+
+  constructor(private hiuiService: HiuiServiceService ) {}
+
+  testVal = this.hiuiService.test();
+  
 }
