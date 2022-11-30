@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Inventory } from './Models/inventory.model';
 import { HiuiServiceService } from './Services/hiui-service.service';
 
 @Component({
@@ -6,11 +8,18 @@ import { HiuiServiceService } from './Services/hiui-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'UIHI';
+  inventory$: Observable<Inventory[]> | undefined;
+
 
   constructor(private hiuiService: HiuiServiceService ) {}
 
-  testVal = this.hiuiService.test();
-  
+  ngOnInit(): void {
+    this.inventory$ = this.hiuiService.getInventory()
+
+  }
+
+
+
 }

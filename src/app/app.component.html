@@ -1,2 +1,18 @@
 {{title}}
-{{testVal}}
+<table *ngIf="inventory$ | async as inventory">
+  <thead>
+  <tr>
+  <th>Id</th>
+  <th>Description</th>
+  <th>Count</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let inv of inventory">
+    <td>{{inv.id}}</td>
+    <td>{{inv.description}}</td>
+    <td>{{inv.count}}</td>
+  </tr>
+</tbody>
+</table>
+
