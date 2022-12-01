@@ -8,23 +8,20 @@ import { HiuiServiceService } from './Services/hiui-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'UIHI';
-  inventory$: Observable<Inventory[]> | undefined;
+  inventory$ = this.hiuiService.inventory$.pipe(
+    catchError(err => {
+      this.errorMessage = err;
+      return EMPTY
+    })
+
+  );
   errorMessage = ''
 
 
   constructor(private hiuiService: HiuiServiceService ) {}
 
-  ngOnInit(): void {
-    this.inventory$ = this.hiuiService.getInventory().pipe(
-      catchError(err => {
-        this.errorMessage = err;
-        return EMPTY
-      })
 
-    )
-
-    }
 
 }

@@ -8,11 +8,17 @@ import { HiuiServiceService } from 'src/app/Services/hiui-service.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements OnInit  {
+export class TimerComponent  {
 
   display: any;
   public timerInterval: any;
-  timer$: Observable<Timer[]> | undefined;
+  timer$ = this.hiuiService.timer$.pipe(
+    catchError(err => {
+      this.errorMessage = err;
+      return EMPTY
+    })
+
+  );
   public timerLength?: number;
   errorMessage = '';
 
@@ -21,20 +27,6 @@ export class TimerComponent implements OnInit  {
 
   }
 
-  ngOnInit(): void {
-    this.timer$ = this.hiuiService.getTimer(15).pipe(
-      catchError(err => {
-        this.errorMessage = err;
-        return EMPTY
-      } )
-    )
- // console.log ("timer in component ", JSON.stringify(this.timer$))
- console.log ("timer in component ", this.timer$)
-
-
-
-
-  }
 
   start() {
     this.timer(4);

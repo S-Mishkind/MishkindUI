@@ -12,26 +12,27 @@ export class HiuiServiceService {
   constructor(private http: HttpClient) { }
   private apiBase = 'https://localhost:7025/api/'
 
-  /* inventory$ = this.http.get<Inventory[]>(this.apiBase + 'Atest')
+  inventory$ = this.http.get<Inventory[]>(this.apiBase + 'Atest')
   .pipe(
-    tap(inventory => console.log('inventory', JSON.stringify(inventory)))
-  ) */
+    tap(inventory => console.log('inventory', JSON.stringify(inventory))),
+    catchError(this.handleError)
+  )
 
-  getInventory(): Observable<Inventory[]>{
-    return this.http.get<Inventory[]>(this.apiBase + 'Atest')
-    .pipe(
-      tap(inventory => console.log('inventory', JSON.stringify(inventory))),
-      catchError(this.handleError)
-    )
-  }
 
-  getTimer(timerLength: number): Observable<Timer[]>{
+
+  timer$ = this.http.get<Timer[]>(this.apiBase + 'Timer?timerLength=15' )
+  .pipe(
+    tap(timer => console.log('timer', JSON.stringify(timer))),
+    catchError(this.handleError)
+  )
+
+/*   getTimer(timerLength: number): Observable<Timer[]>{
     return this.http.get<Timer[]>(this.apiBase + 'Timer?timerLength='+ timerLength  )
     .pipe(
       tap(timer => console.log('timer', JSON.stringify(timer))),
       catchError(this.handleError)
     )
-  }
+  } */
 
   private handleError(err: HttpErrorResponse): Observable<never>{
     let errorMessage: string;
