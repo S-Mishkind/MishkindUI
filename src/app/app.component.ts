@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 import { Inventory } from './Models/inventory.model';
 import { HiuiServiceService } from './Services/hiui-service.service';
 
@@ -11,16 +11,20 @@ import { HiuiServiceService } from './Services/hiui-service.service';
 export class AppComponent implements OnInit{
   title = 'UIHI';
   inventory$: Observable<Inventory[]> | undefined;
+  errorMessage = ''
 
 
   constructor(private hiuiService: HiuiServiceService ) {}
 
   ngOnInit(): void {
-    this.inventory$ = this.hiuiService.getInventory()
-    console.log ("inventory in component ", this.inventory$)
+    this.inventory$ = this.hiuiService.getInventory().pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY
+      })
 
-  }
+    )
 
-
+    }
 
 }
