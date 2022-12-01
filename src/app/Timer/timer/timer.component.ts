@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { Timer } from 'src/app/Models/timer';
 import { HiuiServiceService } from 'src/app/Services/hiui-service.service';
 
@@ -14,16 +14,23 @@ export class TimerComponent implements OnInit  {
   public timerInterval: any;
   timer$: Observable<Timer[]> | undefined;
   public timerLength?: number;
+  errorMessage = '';
+
 
   constructor(private hiuiService: HiuiServiceService) {
 
   }
 
   ngOnInit(): void {
-    this.timer$ = this.hiuiService.getTimer(15)
+    this.timer$ = this.hiuiService.getTimer(15).pipe(
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY
+      } )
+    )
  // console.log ("timer in component ", JSON.stringify(this.timer$))
  console.log ("timer in component ", this.timer$)
- 
+
 
 
 

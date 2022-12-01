@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inventory } from '../Models/inventory.model';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Timer } from '../Models/timer';
 
 @Injectable({
@@ -20,14 +20,23 @@ export class HiuiServiceService {
   getInventory(): Observable<Inventory[]>{
     return this.http.get<Inventory[]>(this.apiBase + 'Atest')
     .pipe(
-      tap(inventory => console.log('inventory', JSON.stringify(inventory)))
+      tap(inventory => console.log('inventory', JSON.stringify(inventory))),
+      catchError(this.handleError)
     )
   }
 
   getTimer(timerLength: number): Observable<Timer[]>{
     return this.http.get<Timer[]>(this.apiBase + 'Timer?timerLength='+ timerLength  )
     .pipe(
-      tap(timer => console.log('timer', JSON.stringify(timer)))
+      tap(timer => console.log('timer', JSON.stringify(timer))),
+      catchError(this.handleError)
     )
+  }
+
+  private handleError(err: HttpErrorResponse): Observable<never>{
+    let errorMessage: string;
+    errorMessage = `an error occured - is Local Api Running ? : ${err.status}: ${err.message}`;
+    console.error(err);
+    return throwError(() => errorMessage);
   }
 }
