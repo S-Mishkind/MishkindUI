@@ -15,37 +15,26 @@ export class TimerComponent  {
   }
 
   start() {
-    this.timer(20);
+    this.timer(4);
   }
   stop() {
     clearInterval(this.timerInterval);
   }
 
- // timer(minute: number) {
+
     timer(s: number) {
-    // let minute = 1;
-    //let seconds: number = minute * 60;
+
     let seconds = s;
     let textSec: any = '0';
-   // let statSec: number = 60;
-   let statSec = s;
 
-    //const prefix = minute < 10 ? '0' : '';
 
     this.timerInterval = setInterval(() => {
-      seconds--;
-     if (statSec != 0) statSec--;
-     // else statSec = 59;
 
-      if (statSec < 10) {
-        textSec = '0' + statSec;
-      } else textSec = statSec;
+     if (seconds != 0) seconds--;
+      if (seconds < 10) {
+        textSec = '0' + seconds;
+      } else textSec = seconds;
 
-
-
-
-     // this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
-     // this.display = `${Math.floor(seconds / 60)}:${textSec}`;
      this.display = `${textSec} seconds`;
 
 
