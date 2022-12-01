@@ -11,7 +11,7 @@ export class TimerComponent  {
   public timerInterval: any;
 
   constructor() {
-    // this.timer(2);
+
   }
 
   start() {
