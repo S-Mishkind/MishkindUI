@@ -13,6 +13,7 @@ export class TimerComponent implements OnInit  {
   display: any;
   public timerInterval: any;
   timer$: Observable<Timer[]> | undefined;
+  public currentTime?: string;
 
   constructor(private hiuiService: HiuiServiceService) {
 
@@ -20,6 +21,8 @@ export class TimerComponent implements OnInit  {
 
   ngOnInit(): void {
     this.timer$ = this.hiuiService.getTimer(15)
+ // console.log ("timer in component ", JSON.stringify(this.timer$))
+ console.log ("timer in component ", this.timer$)
 
   }
 

@@ -25,7 +25,6 @@ export class HiuiServiceService {
   }
 
   getTimer(timerLength: number): Observable<Timer[]>{
-    console.log("timer url = " + this.apiBase + 'Timer('+ timerLength )
     return this.http.get<Timer[]>(this.apiBase + 'Timer?timerLength='+ timerLength  )
     .pipe(
       tap(timer => console.log('timer', JSON.stringify(timer)))

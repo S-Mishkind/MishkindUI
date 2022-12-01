@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.inventory$ = this.hiuiService.getInventory()
+    console.log ("inventory in component ", this.inventory$)
 
   }
 

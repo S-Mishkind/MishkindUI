@@ -1,7 +1,12 @@
 
 <button (click)="start()">Start</button>
 <button (click)="stop()">Stop</button>
+{{timer$ | async}}
 <div  *ngIf="timer$ | async as timer">
+  {{timer | json}}
+
+    {{timer}}
+
 
 {{display}}
 </div>
