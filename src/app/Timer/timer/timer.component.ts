@@ -1,16 +1,25 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Timer } from 'src/app/Models/timer';
+import { HiuiServiceService } from 'src/app/Services/hiui-service.service';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent  {
+export class TimerComponent implements OnInit  {
 
   display: any;
   public timerInterval: any;
+  timer$: Observable<Timer[]> | undefined;
 
-  constructor() {
+  constructor(private hiuiService: HiuiServiceService) {
+
+  }
+
+  ngOnInit(): void {
+    this.timer$ = this.hiuiService.getTimer(15)
 
   }
 
