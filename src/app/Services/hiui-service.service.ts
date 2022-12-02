@@ -25,8 +25,14 @@ export class HiuiServiceService {
     catchError(this.handleError)
   );
 
-  timerComplete(){
+  /* timerComplete(){
     console.log("post timer complete");
+  } */
+
+  timerComplete(tComplete:boolean):Observable<any>{
+    console.log ("hit timer complete")
+    const body = tComplete;
+    return this.http.post(`${this.apiBase}Timer`,body)
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

@@ -29,7 +29,7 @@ export class TimerComponent implements OnInit{
   constructor(private hiuiService: HiuiServiceService) {}
 
   ngOnInit(): void {
-      this.start(5);
+      this.start(2);
   }
   start(timerLength: number) {
     this.timer(timerLength);
@@ -51,10 +51,8 @@ export class TimerComponent implements OnInit{
       this.display = `${textSec} seconds`;
 
       if (seconds == 0) {
-       // console.log('finished');
         clearInterval(this.timerInterval);
-       // console.log("call api now");
-        this.hiuiService.timerComplete();
+        this.hiuiService.timerComplete(true).subscribe();
       }
     }, 1000);
 
