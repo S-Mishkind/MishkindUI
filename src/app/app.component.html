@@ -1,4 +1,13 @@
-{{title}}
+<div>
+  <div>
+    <table mat-table [dataSource]="inventoryData" class="mat-elevation-z8" *ngIf="inventory$ | async as inventory">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+    </table>
+  </div>
 <table *ngIf="inventory$ | async as inventory">
   <thead>
   <tr>
@@ -19,3 +28,5 @@
 <app-timer></app-timer>
 
 {{this.errorMessage}}
+
+</div>
