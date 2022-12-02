@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inventory } from '../Models/inventory.model';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { Timer } from '../Models/timer';
 
 @Injectable({
@@ -15,6 +15,10 @@ export class HiuiServiceService {
     tap((inventory) => console.log('inventory', JSON.stringify(inventory))),
     catchError(this.handleError)
   );
+
+  private timerSelectedLengthBS = new BehaviorSubject<number>(15);
+  timerSelLengthAction$ = this.timerSelectedLengthBS.asObservable();
+
 
   timer$ = this.http.get<Timer[]>(`${this.apiBase}Timer?timerLength=15`).pipe(
     tap((timer) => console.log('timer', JSON.stringify(timer))),

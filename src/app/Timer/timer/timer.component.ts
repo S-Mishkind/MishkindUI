@@ -14,11 +14,18 @@ import { HiuiServiceService } from 'src/app/Services/hiui-service.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css'],
 })
-export class TimerComponent {
+export class TimerComponent implements OnInit{
   display: any;
   public timerInterval: any;
 
   timers$ = this.hiuiService.timer$.pipe(
+    catchError((err) => {
+      this.errorMessage = err;
+      return EMPTY;
+    })
+  );
+
+ /*  timers$ = this.hiuiService.timer$.pipe(
     map((timers) =>
       timers.map(
         (timer) =>
@@ -33,7 +40,7 @@ export class TimerComponent {
       this.errorMessage = err;
       return EMPTY;
     })
-  );
+  ); */
 
 
   public timerLength?: number;
@@ -41,8 +48,11 @@ export class TimerComponent {
 
   constructor(private hiuiService: HiuiServiceService) {}
 
-  start() {
-    this.timer(4);
+  ngOnInit(): void {
+      this.start(5);
+  }
+  start(timerLength: number) {
+    this.timer(timerLength);
   }
   stop() {
     clearInterval(this.timerInterval);
@@ -63,7 +73,9 @@ export class TimerComponent {
       if (seconds == 0) {
         console.log('finished');
         clearInterval(this.timerInterval);
+        console.log("call api now");
       }
     }, 1000);
+
   }
 }
