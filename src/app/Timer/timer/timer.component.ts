@@ -16,7 +16,8 @@ import { HiuiServiceService } from 'src/app/Services/hiui-service.service';
 })
 export class TimerComponent implements OnInit{
   display: any;
-  public timerInterval: any;
+  timerInterval: any;
+  errorMessage = '';
 
   timers$ = this.hiuiService.timer$.pipe(
     catchError((err) => {
@@ -24,27 +25,6 @@ export class TimerComponent implements OnInit{
       return EMPTY;
     })
   );
-
- /*  timers$ = this.hiuiService.timer$.pipe(
-    map((timers) =>
-      timers.map(
-        (timer) =>
-          ({
-            ...timer,
-          } as Timer)
-      )
-    ),
-    tap(timer => console.log("tval = " + timer[0].timerLength)),
-    tap(timer => this.timerInterval = timer[0].timerLength),
-    catchError((err) => {
-      this.errorMessage = err;
-      return EMPTY;
-    })
-  ); */
-
-
-  public timerLength?: number;
-  errorMessage = '';
 
   constructor(private hiuiService: HiuiServiceService) {}
 
