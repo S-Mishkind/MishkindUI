@@ -1,7 +1,7 @@
 
 <button (click)="start()">Start</button>
 <button (click)="stop()">Stop</button>
-<div  *ngIf="timer$ | async as timers">
+<div  *ngIf="timers$ | async as timers">
 <div *ngFor="let timer of timers">
   {{timer.currentTime}}
 </div>
@@ -9,4 +9,5 @@
 
 {{display}}
 </div>
+{{timerInterval}}
 {{errorMessage}}
