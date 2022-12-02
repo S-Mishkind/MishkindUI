@@ -51,9 +51,10 @@ export class TimerComponent implements OnInit{
       this.display = `${textSec} seconds`;
 
       if (seconds == 0) {
-        console.log('finished');
+       // console.log('finished');
         clearInterval(this.timerInterval);
-        console.log("call api now");
+       // console.log("call api now");
+        this.hiuiService.timerComplete();
       }
     }, 1000);
 

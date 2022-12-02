@@ -20,10 +20,14 @@ export class HiuiServiceService {
   timerSelLengthAction$ = this.timerSelectedLengthBS.asObservable();
 
 
-  timer$ = this.http.get<Timer[]>(`${this.apiBase}Timer?timerLength=15`).pipe(
+  timer$ = this.http.get<Timer[]>(`${this.apiBase}Timer`).pipe(
     tap((timer) => console.log('timer', JSON.stringify(timer))),
     catchError(this.handleError)
   );
+
+  timerComplete(){
+    console.log("post timer complete");
+  }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage: string;
