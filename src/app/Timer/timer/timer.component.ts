@@ -29,7 +29,7 @@ export class TimerComponent implements OnInit{
   constructor(private hiuiService: HiuiServiceService) {}
 
   ngOnInit(): void {
-      this.start(2);
+      this.start(10);
   }
   start(timerLength: number) {
     this.timer(timerLength);

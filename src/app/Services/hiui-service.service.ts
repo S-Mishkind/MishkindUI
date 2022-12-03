@@ -11,7 +11,7 @@ export class HiuiServiceService {
   constructor(private http: HttpClient) {}
   private apiBase = 'https://localhost:7025/api/';
 
-  inventory$ = this.http.get<Inventory[]>(`${this.apiBase}Atest`).pipe(
+  inventory$ = this.http.get<Inventory[]>(`${this.apiBase}Inventory`).pipe(
     tap((inventory) => console.log('inventory', JSON.stringify(inventory))),
     catchError(this.handleError)
   );
