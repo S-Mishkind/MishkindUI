@@ -1,0 +1,16 @@
+.clock {
+  font-size: xx-large;
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px rgb(15, 15, 15);
+  width: 300px;
+}
+
+.display{
+  font-size: xx-large;
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px rgb(15, 15, 15);
+  width: 300px;
+
+}

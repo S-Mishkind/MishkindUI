@@ -1,12 +1,12 @@
 
 
 <div  *ngIf="timers$ | async as timers">
-<div *ngFor="let timer of timers">
-  {{timer.currentTime}}
+<div *ngFor="let timer of timers" class="clock">
+ Start Time - {{timer.currentTime}}
 </div>
-
-
-{{display}}
+<div class="display">
+Timer - {{display}}
+</div>
 </div>
 
 {{errorMessage}}
