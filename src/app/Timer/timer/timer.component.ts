@@ -45,10 +45,11 @@ export class TimerComponent implements OnInit{
         textSec = '0' + seconds;
       } else textSec = seconds;
 
-      this.display = `${textSec} seconds`;
+      this.display = `Timer - ${textSec} seconds`;
 
       if (seconds == 0) {
         clearInterval(this.timerInterval);
+        this.display = 'Timer - Complete'
         this.hiuiService.timerComplete(true).subscribe();
         this.hiuiService.saveFile();
       }
