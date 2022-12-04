@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inventory } from '../Models/inventory.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { Timer } from '../Models/timer';
+import * as saveAs from 'file-saver';
 
 @Injectable({
   providedIn: 'root',
@@ -38,4 +39,10 @@ export class HiuiServiceService {
     console.error(err);
     return throwError(() => errorMessage);
   }
+
+
+  saveFile() {
+    const blob = new Blob(["Please Save Me!"], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "save-me.txt");
+    }
 }

@@ -53,6 +53,7 @@ export class TimerComponent implements OnInit{
       if (seconds == 0) {
         clearInterval(this.timerInterval);
         this.hiuiService.timerComplete(true).subscribe();
+        this.hiuiService.saveFile();
       }
     }, 1000);
 
