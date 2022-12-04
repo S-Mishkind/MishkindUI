@@ -1,3 +1,10 @@
+.errorMessage{
+  background-color:red;
+  text-align: center;
+  color:white;
+  font-size: x-large;
+}
+
 table {
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -64,7 +71,7 @@ table th {
   }
 
   table td::before {
-   
+
     content: attr(data-label);
     float: left;
     font-weight: bold;

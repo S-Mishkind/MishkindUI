@@ -32,7 +32,7 @@ export class HiuiServiceService {
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage: string;
-    errorMessage = `an error occured - is Local Api Running ? : ${err.status}: ${err.message}`;
+    errorMessage = `An error occured - is Local Api Running ? : ${err.status}: ${err.message}`;
     console.error(err);
     return throwError(() => errorMessage);
   }
