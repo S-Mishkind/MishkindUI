@@ -38,7 +38,7 @@ export class HiuiServiceService {
   }
 
   saveFile() {
-   // const blob = new Blob([this.textToSave], {type: "text/plain;charset=utf-8"});
-   //  saveAs(blob, "inventory.txt");
+    const blob = new Blob([this.textToSave], {type: "text/plain;charset=utf-8"});
+     saveAs(blob, "inventory.txt");
   }
 }
