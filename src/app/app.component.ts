@@ -23,11 +23,6 @@ export class AppComponent {
         } as Inventory)
     )
   ),
-  tap(inv => console.log("inv = " + inv)),
-  tap(inv => {
-    this.inventoryData = inv.map;
-  }),
-
     catchError(err => {
       this.errorMessage = err;
       return EMPTY
