@@ -11,14 +11,13 @@ import * as saveAs from 'file-saver';
 export class HiuiServiceService {
   constructor(private http: HttpClient) {}
   private apiBase = 'https://localhost:7025/api/';
+  private textToSave = '';
 
   inventory$ = this.http.get<Inventory[]>(`${this.apiBase}Inventory`).pipe(
     tap((inventory) => console.log('inventory', JSON.stringify(inventory))),
+    tap((inventory) => this.textToSave = JSON.stringify(inventory)),
     catchError(this.handleError)
   );
-
-  private timerSelectedLengthBS = new BehaviorSubject<number>(15);
-  timerSelLengthAction$ = this.timerSelectedLengthBS.asObservable();
 
 
   timer$ = this.http.get<Timer[]>(`${this.apiBase}Timer`).pipe(
@@ -26,11 +25,9 @@ export class HiuiServiceService {
     catchError(this.handleError)
   );
 
-
-  timerComplete(tComplete:boolean):Observable<any>{
-   // console.log ("hit timer complete bool = " + tComplete)
+  timerComplete(tComplete: boolean): Observable<any> {
     const body = '';
-    return this.http.post(`${this.apiBase}Timer?tComplete=true`,body)
+    return this.http.post(`${this.apiBase}Timer?tComplete=true`, body);
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
@@ -40,9 +37,8 @@ export class HiuiServiceService {
     return throwError(() => errorMessage);
   }
 
-
   saveFile() {
-    const blob = new Blob(["Please Save Me!"], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "save-me.txt");
-    }
+   // const blob = new Blob([this.textToSave], {type: "text/plain;charset=utf-8"});
+   //  saveAs(blob, "inventory.txt");
+  }
 }

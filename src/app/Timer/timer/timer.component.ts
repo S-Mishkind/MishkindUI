@@ -1,9 +1,6 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 import { Timer } from 'src/app/Models/timer';

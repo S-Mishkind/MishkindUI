@@ -14,7 +14,6 @@ export class AppComponent {
   displayedColumns: string[]= ['description']
   errorMessage = ''
 
-
   inventory$ = this.hiuiService.inventory$.pipe(
     map((inventory) =>
     inventory.map(
@@ -25,7 +24,10 @@ export class AppComponent {
     )
   ),
   tap(inv => console.log("inv = " + inv)),
-  tap(inv => this.inventoryData = inv),
+  tap(inv => {
+    this.inventoryData = inv.map;
+  }),
+
     catchError(err => {
       this.errorMessage = err;
       return EMPTY
@@ -33,12 +35,7 @@ export class AppComponent {
 
   );
 
-
-
   constructor(private hiuiService: HiuiServiceService ) {}
-
-
-
 
 
 }
