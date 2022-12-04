@@ -51,7 +51,10 @@ export class TimerComponent implements OnInit{
         clearInterval(this.timerInterval);
         this.display = 'Timer - Complete'
         this.hiuiService.timerComplete(true).subscribe();
+        if (this.errorMessage === '')
+        {
         this.hiuiService.saveFile();
+        }
       }
     }, 1000);
 
