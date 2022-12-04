@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as saveAs from 'file-saver';
 import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 import { Inventory } from './Models/inventory.model';
 import { HiuiServiceService } from './Services/hiui-service.service';
@@ -12,17 +13,8 @@ export class AppComponent {
   title = 'UIHI';
   inventoryData: any;
   displayedColumns: string[]= ['description']
+  errorMessage = ''
 
-/*   id: number,
-  description: string,
-  count: number */
-/*   inventory$ = this.hiuiService.inventory$.pipe(
-    catchError(err => {
-      this.errorMessage = err;
-      return EMPTY
-    })
-
-  ); */
 
   inventory$ = this.hiuiService.inventory$.pipe(
     map((inventory) =>
@@ -41,10 +33,15 @@ export class AppComponent {
     })
 
   );
-  errorMessage = ''
+
 
 
   constructor(private hiuiService: HiuiServiceService ) {}
+
+  saveFile() {
+    const blob = new Blob(["Please Save Me!"], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "save-me.txt");
+    }
 
 
 
